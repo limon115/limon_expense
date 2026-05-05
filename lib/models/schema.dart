@@ -17,7 +17,7 @@ class Wallet {
   late String name;
   double budget = 0.0;
 
-  @Backlink('wallet')
+  @Backlink(to: 'wallet')
   final transactions = IsarLinks<Transaction>();
 }
 
