@@ -42,17 +42,44 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       children: [
                         Row(
                           children: [
-                            Expanded(child: GlassButton(onTap: () => setState(() => _type = 'expense'), 
-                              child: const Text('Expense'))),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () => setState(() => _type = 'expense'),
+                                child: GlassCard(
+                                  padding: const EdgeInsets.symmetric(vertical: 12),
+                                  child: Center(child: Text('Expense', style: TextStyle(color: _type == 'expense' ? Colors.redAccent : Colors.white))),
+                                ),
+                              ),
+                            ),
                             const SizedBox(width: 10),
-                            Expanded(child: GlassButton(onTap: () => setState(() => _type = 'income'), 
-                              child: const Text('Income'))),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () => setState(() => _type = 'income'),
+                                child: GlassCard(
+                                  padding: const EdgeInsets.symmetric(vertical: 12),
+                                  child: Center(child: Text('Income', style: TextStyle(color: _type == 'income' ? Colors.greenAccent : Colors.white))),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 20),
-                        GlassTextField(controller: _amountCtrl, hintText: 'Amount', keyboardType: TextInputType.number),
+                        GlassCard(
+                          padding: EdgeInsets.zero,
+                          child: TextField(
+                            controller: _amountCtrl,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(hintText: 'Amount', border: InputBorder.none, contentPadding: EdgeInsets.all(12)),
+                          ),
+                        ),
                         const SizedBox(height: 15),
-                        GlassTextField(controller: _titleCtrl, hintText: 'Description'),
+                        GlassCard(
+                          padding: EdgeInsets.zero,
+                          child: TextField(
+                            controller: _titleCtrl,
+                            decoration: const InputDecoration(hintText: 'Description', border: InputBorder.none, contentPadding: EdgeInsets.all(12)),
+                          ),
+                        ),
                         const SizedBox(height: 15),
                         DropdownButton<String>(
                           value: _category,
@@ -71,10 +98,16 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             child: Row(children: [const Icon(Icons.calendar_month, size: 18), const SizedBox(width: 10), Text(DateFormat('yyyy-MM-dd').format(_date))])),
                         ),
                         const SizedBox(height: 30),
-                        GlassButton(onTap: () {
-                          app.addTx(_titleCtrl.text, double.parse(_amountCtrl.text), _category!, _type, _date);
-                          Navigator.pop(context);
-                        }, child: const Text('Save Transaction', style: TextStyle(fontWeight: FontWeight.bold))),
+                        GestureDetector(
+                          onTap: () {
+                            app.addTx(_titleCtrl.text, double.parse(_amountCtrl.text), _category!, _type, _date);
+                            Navigator.pop(context);
+                          },
+                          child: const GlassCard(
+                            padding: EdgeInsets.symmetric(vertical: 12),
+                            child: Center(child: Text('Save Transaction', style: TextStyle(fontWeight: FontWeight.bold))),
+                          ),
+                        ),
                       ],
                     ),
                   )

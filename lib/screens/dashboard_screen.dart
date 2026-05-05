@@ -32,9 +32,12 @@ class DashboardScreen extends StatelessWidget {
                   Text(app.settings?.userName ?? 'User', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 ],
               ),
-              GlassButton(
+              GestureDetector(
                 onTap: () => _showWalletPicker(context, app),
-                child: Text(app.activeWallet.name),
+                child: GlassCard(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Text(app.activeWallet.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+                ),
               )
             ],
           ),
@@ -42,7 +45,7 @@ class DashboardScreen extends StatelessWidget {
           GlassCard(
             child: Column(
               children: [
-                const Text('Total Balance', style: TextStyle(color: Colors.white.withOpacity(0.8))),
+                Text('Total Balance', style: TextStyle(color: Colors.white.withOpacity(0.8))),
                 Text('$currency${balance.toStringAsFixed(2)}', style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 20),
                 Row(
@@ -130,7 +133,6 @@ class DashboardScreen extends StatelessWidget {
               title: const Text('Add New Wallet'),
               onTap: () {
                 Navigator.pop(context);
-                // Trigger a simple dialog logic
               },
             )
           ],

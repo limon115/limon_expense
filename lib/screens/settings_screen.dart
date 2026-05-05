@@ -33,9 +33,22 @@ class SettingsScreen extends StatelessWidget {
           GlassCard(
             child: Column(
               children: [
-                GlassTextField(controller: nameCtrl, hintText: 'Profile Name'),
+                GlassCard(
+                  padding: EdgeInsets.zero,
+                  child: TextField(
+                    controller: nameCtrl,
+                    decoration: const InputDecoration(hintText: 'Profile Name', border: InputBorder.none, contentPadding: EdgeInsets.all(12)),
+                  ),
+                ),
                 const SizedBox(height: 15),
-                GlassTextField(controller: budgetCtrl, hintText: 'Monthly Budget', keyboardType: TextInputType.number),
+                GlassCard(
+                  padding: EdgeInsets.zero,
+                  child: TextField(
+                    controller: budgetCtrl,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(hintText: 'Monthly Budget', border: InputBorder.none, contentPadding: EdgeInsets.all(12)),
+                  ),
+                ),
                 const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +58,13 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                GlassButton(onTap: () => app.updateUserSettings(nameCtrl.text, app.settings!.currency, double.parse(budgetCtrl.text), app.settings!.isDarkMode), child: const Text('Save Profile')),
+                GestureDetector(
+                  onTap: () => app.updateUserSettings(nameCtrl.text, app.settings!.currency, double.parse(budgetCtrl.text), app.settings!.isDarkMode),
+                  child: const GlassCard(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    child: Center(child: Text('Save Profile', style: TextStyle(fontWeight: FontWeight.bold))),
+                  ),
+                ),
               ],
             ),
           ),
@@ -54,7 +73,7 @@ class SettingsScreen extends StatelessWidget {
             Clipboard.setData(ClipboardData(text: app.exportBackup()));
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Backup copied to clipboard!')));
           }),
-          _actionTile(Icons.picture_as_pdf_rounded, 'Export PDF Report', () {}), // Logic would go here using the pdf package
+          _actionTile(Icons.picture_as_pdf_rounded, 'Export PDF Report', () {}),
           _actionTile(Icons.delete_forever_rounded, 'Reset Everything', () => app.resetAll(), color: Colors.redAccent),
         ],
       ),
