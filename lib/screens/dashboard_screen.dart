@@ -28,12 +28,12 @@ class DashboardScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Welcome Back', style: TextStyle(opacity: 0.7)),
+                  const Text('Welcome Back', style: TextStyle(color: Colors.white70)),
                   Text(app.settings?.userName ?? 'User', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 ],
               ),
               GlassButton(
-                onPressed: () => _showWalletPicker(context, app),
+                onTap: () => _showWalletPicker(context, app),
                 child: Text(app.activeWallet.name),
               )
             ],
@@ -42,7 +42,7 @@ class DashboardScreen extends StatelessWidget {
           GlassCard(
             child: Column(
               children: [
-                const Text('Total Balance', style: TextStyle(opacity: 0.8)),
+                const Text('Total Balance', style: TextStyle(color: Colors.white.withOpacity(0.8))),
                 Text('$currency${balance.toStringAsFixed(2)}', style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 20),
                 Row(
@@ -83,7 +83,7 @@ class DashboardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label, style: const TextStyle(fontSize: 10, opacity: 0.7)),
+            Text(label, style: const TextStyle(fontSize: 10, color: Colors.white70)),
             Text(value, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: color)),
           ],
         ),

@@ -19,7 +19,7 @@ class AnalyticsScreen extends StatelessWidget {
           children: [
             const Text('Analytics', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             const SizedBox(height: 30),
-            const Text('Expense Breakdown', style: TextStyle(opacity: 0.7)),
+            const Text('Expense Breakdown', style: TextStyle(color: Colors.white70)),
             Expanded(
               child: GlassCard(
                 child: PieChart(
@@ -32,7 +32,7 @@ class AnalyticsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text('Income Breakdown', style: TextStyle(opacity: 0.7)),
+            const Text('Income Breakdown', style: TextStyle(color: Colors.white70)),
             Expanded(
               child: GlassCard(
                 child: PieChart(

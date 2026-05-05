@@ -38,14 +38,14 @@ class _MainNavigationState extends State<MainNavigation> {
         ],
       ),
       bottomNavigationBar: GlassBottomBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.dashboard_rounded), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.bar_chart_rounded), label: 'Trends'),
-          BottomNavigationBarItem(icon: Icon(Icons.pie_chart_rounded), label: 'Analytics'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings_rounded), label: 'Settings'),
+        tabs: [
+          GlassBottomBarTab(icon: const Icon(Icons.dashboard_rounded), label: 'Home'),
+          GlassBottomBarTab(icon: const Icon(Icons.bar_chart_rounded), label: 'Trends'),
+          GlassBottomBarTab(icon: const Icon(Icons.pie_chart_rounded), label: 'Analytics'),
+          GlassBottomBarTab(icon: const Icon(Icons.settings_rounded), label: 'Settings'),
         ],
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
+        selectedIndex: _selectedIndex,
+        onTabSelected: (index) => setState(() => _selectedIndex = index),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(

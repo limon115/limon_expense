@@ -25,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
                 const CircleAvatar(radius: 40, backgroundColor: Colors.blueAccent, child: Icon(Icons.code_rounded, size: 40, color: Colors.white)),
                 const SizedBox(height: 10),
                 const Text('Khalid Hasan Limon', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                const Text('Lead Developer', style: TextStyle(opacity: 0.6, fontSize: 12)),
+                const Text('Lead Developer', style: TextStyle(color: Colors.white60, fontSize: 12)),
               ],
             ),
           ),
@@ -33,9 +33,9 @@ class SettingsScreen extends StatelessWidget {
           GlassCard(
             child: Column(
               children: [
-                GlassTextField(controller: nameCtrl, label: 'Profile Name'),
+                GlassTextField(controller: nameCtrl, hintText: 'Profile Name'),
                 const SizedBox(height: 15),
-                GlassTextField(controller: budgetCtrl, label: 'Monthly Budget', keyboardType: TextInputType.number),
+                GlassTextField(controller: budgetCtrl, hintText: 'Monthly Budget', keyboardType: TextInputType.number),
                 const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                GlassButton(onPressed: () => app.updateUserSettings(nameCtrl.text, app.settings!.currency, double.parse(budgetCtrl.text), app.settings!.isDarkMode), child: const Text('Save Profile')),
+                GlassButton(onTap: () => app.updateUserSettings(nameCtrl.text, app.settings!.currency, double.parse(budgetCtrl.text), app.settings!.isDarkMode), child: const Text('Save Profile')),
               ],
             ),
           ),

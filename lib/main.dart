@@ -27,7 +27,7 @@ class LimonExpenseApp extends StatelessWidget {
     final isDark = context.watch<AppProvider>().settings?.isDarkMode ?? false;
 
     return LiquidGlassWidgets.wrap(
-      child: MaterialApp(
+      MaterialApp(
         title: 'Limon Expense Manager',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

@@ -28,7 +28,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // Simple static blur background to match the liquid aesthetic
           Container(decoration: const BoxDecoration(gradient: LinearGradient(colors: [Colors.blueGrey, Colors.black], begin: Alignment.topLeft))),
           SafeArea(
             child: Padding(
@@ -43,19 +42,17 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       children: [
                         Row(
                           children: [
-                            Expanded(child: GlassButton(onPressed: () => setState(() => _type = 'expense'), 
-                              color: _type == 'expense' ? Colors.redAccent.withOpacity(0.3) : null,
+                            Expanded(child: GlassButton(onTap: () => setState(() => _type = 'expense'), 
                               child: const Text('Expense'))),
                             const SizedBox(width: 10),
-                            Expanded(child: GlassButton(onPressed: () => setState(() => _type = 'income'), 
-                              color: _type == 'income' ? Colors.greenAccent.withOpacity(0.3) : null,
+                            Expanded(child: GlassButton(onTap: () => setState(() => _type = 'income'), 
                               child: const Text('Income'))),
                           ],
                         ),
                         const SizedBox(height: 20),
-                        GlassTextField(controller: _amountCtrl, label: 'Amount', keyboardType: TextInputType.number),
+                        GlassTextField(controller: _amountCtrl, hintText: 'Amount', keyboardType: TextInputType.number),
                         const SizedBox(height: 15),
-                        GlassTextField(controller: _titleCtrl, label: 'Description'),
+                        GlassTextField(controller: _titleCtrl, hintText: 'Description'),
                         const SizedBox(height: 15),
                         DropdownButton<String>(
                           value: _category,
@@ -74,7 +71,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             child: Row(children: [const Icon(Icons.calendar_month, size: 18), const SizedBox(width: 10), Text(DateFormat('yyyy-MM-dd').format(_date))])),
                         ),
                         const SizedBox(height: 30),
-                        GlassButton(onPressed: () {
+                        GlassButton(onTap: () {
                           app.addTx(_titleCtrl.text, double.parse(_amountCtrl.text), _category!, _type, _date);
                           Navigator.pop(context);
                         }, child: const Text('Save Transaction', style: TextStyle(fontWeight: FontWeight.bold))),

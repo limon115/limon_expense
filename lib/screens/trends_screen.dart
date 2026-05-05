@@ -19,7 +19,7 @@ class TrendsScreen extends StatelessWidget {
           children: [
             const Text('Daily Trends', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             const SizedBox(height: 20),
-            const Text('Expenses (Last 7 Days)', style: TextStyle(opacity: 0.7)),
+            const Text('Expenses (Last 7 Days)', style: TextStyle(color: Colors.white70)),
             const SizedBox(height: 10),
             Expanded(
               child: GlassCard(
@@ -34,7 +34,7 @@ class TrendsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text('Income (Last 7 Days)', style: TextStyle(opacity: 0.7)),
+            const Text('Income (Last 7 Days)', style: TextStyle(color: Colors.white70)),
             const SizedBox(height: 10),
             Expanded(
               child: GlassCard(
