@@ -6,7 +6,7 @@ part 'schema.g.dart';
 class UserSettings {
   Id id = Isar.autoIncrement;
   String userName = 'User';
-  String currency = '$';
+  String currency = '\$';
   bool isDarkMode = false;
   double monthlyBudget = 0.0;
 }
