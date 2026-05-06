@@ -24,12 +24,15 @@ jobs:
       with:
         channel: 'stable'
 
-    - name: Create project structure
-      run: flutter create --platforms=android .
+    - name: Create project structure & fix folders
+      run: |
+        flutter create --platforms=android .
+        mkdir -p assets/shaders/
 
-    - name: Patch Gradle for Isar Namespace Issue
+    - name: Patch Gradle for Isar Namespace & lStar Issue
       run: |
         echo "subprojects { afterEvaluate { project -> if (project.hasProperty('android')) { project.android { if (namespace == null) { namespace project.group } } } } }" >> android/build.gradle
+        echo "subprojects { project.configurations.all { resolutionStrategy.force 'androidx.core:core-ktx:1.6.0'; resolutionStrategy.force 'androidx.core:core:1.6.0' } }" >> android/build.gradle
 
     - name: Install dependencies
       run: flutter pub get
