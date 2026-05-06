@@ -120,7 +120,7 @@ class DashboardScreen extends StatelessWidget {
         const Text('Recent Transactions', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
         const SizedBox(height: 12),
         if (transactions.isEmpty)
-          const Center(padding: EdgeInsets.all(40), child: Text('No transactions yet', style: TextStyle(color: Colors.white70))),
+          const Padding(padding: EdgeInsets.all(40), child: Center(child: Text('No transactions yet', style: TextStyle(color: Colors.white70)))),
         ...transactions.reversed.take(20).map((tx) => _txItem(context, tx, state.currency, prov)).toList(),
       ],
     );

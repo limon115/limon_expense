@@ -13,7 +13,7 @@ void main() async {
   await LiquidGlassWidgets.initialize();
   runApp(
     ChangeNotifierProvider(
-      create: () => AppProvider(),
+      create: (context) => AppProvider(),
       child: const ExpenseApp(),
     ),
   );
@@ -26,7 +26,7 @@ class ExpenseApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = context.watch<AppProvider>().state.isDarkMode;
     return LiquidGlassWidgets.wrap(
-      child: MaterialApp(
+      MaterialApp(
         title: 'Limon Manager',
         debugShowCheckedModeBanner: false,
         themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
