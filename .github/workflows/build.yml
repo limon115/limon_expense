@@ -29,9 +29,24 @@ jobs:
         flutter create --platforms=android .
         mkdir -p assets/shaders/
 
-    - name: Patch Gradle for Isar Compatibility
+    - name: Surgically Patch Gradle for Isar AGP 8
       run: |
-        echo "subprojects { afterEvaluate { project -> if (project.hasProperty('android')) { project.android { if (namespace == null) { namespace project.group }; compileSdkVersion 34 } } } }" >> android/build.gradle
+        cat << 'GRADLE_EOF' >> android/build.gradle
+        subprojects {
+            afterEvaluate { project ->
+                if (project.hasProperty('android')) {
+                    project.android {
+                        if (namespace == null) {
+                            namespace project.group
+                        }
+                        if (project.name == "isar_flutter_libs") {
+                            compileSdkVersion 34
+                        }
+                    }
+                }
+            }
+        }
+        GRADLE_EOF
 
     - name: Install dependencies
       run: flutter pub get
