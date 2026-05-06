@@ -21,8 +21,6 @@ dependencies:
   share_plus: ^7.2.2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   isar_generator: ^3.1.0+1
   build_runner: ^2.4.8
 
